@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcService";
+
+package hi;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc GetPatientInfoByPntID (PntInfoRequest) returns (PntInfoResponce);
+  rpc GetPatientInfoByPntName (Pntname) returns (PntInfoResponce);
+  rpc SavePatientInfo (PntInfoResponce) returns (SaveCheck);
+  rpc UpdatePatientInfo (PntInfoResponce) returns (UpdateCheck);
+  rpc DeletePatientInfo (PntInfoRequest) returns (DeleteCheck);
+}
+
+message DeleteCheck {
+	bool check = 1;
+}
+
+message UpdateCheck {
+	bool check = 1;
+}
+
+message SaveCheck {
+	bool check = 1;
+}
+
+// The request message containing the user's name.
+message PntInfoRequest {
+  int32 patientID = 1;
+}
+// The response message containing the greetings.
+message PntInfoResponce {
+	int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+  string phoneNumber = 4;
+}
+
+message Pntname {
+	string name = 1;
+}
